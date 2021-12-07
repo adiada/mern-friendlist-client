@@ -14,7 +14,7 @@ function App() {
 
   const addFriend = () =>{
     // alert(name + age)
-    axios.post('http://localhost:5000/addFriend',{
+    axios.post('https://friend-list-mern.herokuapp.com/addFriend',{
       name,
       age
     })
@@ -29,7 +29,7 @@ function App() {
 
   const updateFriend = (id) => {
     const newAge = prompt('Enter new age:')
-    axios.put('http://localhost:5000/update',{
+    axios.put('https://friend-list-mern.herokuapp.com/update',{
       newAge,
       id
     })
@@ -48,14 +48,14 @@ function App() {
 
 
   const deleteFriend = (id) => {
-    axios.delete(`http://localhost:5000/delete/${id}`)
+    axios.delete(`https://friend-list-mern.herokuapp.com/delete/${id}`)
     .then( resp => {console.log(resp)
                     setListOfFriends(listOfFriends.filter( friend => !(friend._id === id)))})
     .catch( e =>  console.error(e.message))
   }
 
   useEffect(()=>{
-    axios.get('http://localhost:5000/read')
+    axios.get('https://friend-list-mern.herokuapp.com/read')
     .then( (resp) => {console.log(resp);resp.data.forEach( friend => console.log(friend));setListOfFriends(resp.data)})
     .catch( (err) => console.error(err.message))
   },[])
